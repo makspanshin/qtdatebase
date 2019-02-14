@@ -1,20 +1,17 @@
-#include "reader_tabl.h"
+#include "books_tabl.h"
 #include "connect_db.h"
 
-reader_tabl::reader_tabl(QObject *parent) : QObject(parent)
+books_tabl::books_tabl(QObject *parent) : QObject(parent)
 {
 
 }
 
-reader_tabl::~reader_tabl()
+books_tabl::~books_tabl()
 {
 
 }
 
-
-/* Метод для создания таблицы в базе данных
- * */
-bool reader_tabl::createTable()
+bool books_tabl::createTable()
 {
     /* В данном случае используется формирование сырого SQL-запроса
      * с последующим его выполнением.
@@ -22,8 +19,8 @@ bool reader_tabl::createTable()
     QSqlQuery query;
     if(!query.exec( "CREATE TABLE " TABLE "("
                             "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            TABLE_FIO       " VARCHAR(255)    NOT NULL,"
-                            TABLE_PHONE     " VARCHAR(12)     NOT NULL"
+                            TABLE_TITLE      " VARCHAR(255)    NOT NULL,"
+                            TABLE_WRITER     " VARCHAR(255)     NOT NULL"
                         ")"
                     )){
         qDebug() << "DataBase: error of create " << TABLE;
@@ -36,7 +33,7 @@ bool reader_tabl::createTable()
 
 /* Метод для вставки записи в базу данных
  * */
-bool reader_tabl::insertIntoTable(const QVariantList &data)
+bool books_tabl::insertIntoTable(const QVariantList &data)
 {
     /* Запрос SQL формируется из QVariantList,
      * в который передаются данные для вставки в таблицу.
@@ -46,11 +43,11 @@ bool reader_tabl::insertIntoTable(const QVariantList &data)
      * которые потом связываются методом bindValue
      * для подстановки данных из QVariantList
      * */
-    query.prepare("INSERT INTO " TABLE " ( " TABLE_FIO ","
-                                             TABLE_PHONE " ) "
-                  "VALUES (:FIO,:PHONE)");
-    query.bindValue(":FIO",     data[0].toString());
-    query.bindValue(":PHONE",   data[1].toString());
+    query.prepare("INSERT INTO " TABLE " ( " TABLE_TITLE  ","
+                                             TABLE_WRITER " ) "
+                  "VALUES (:TITLE,:WRITER)");
+    query.bindValue(":TITLE",     data[0].toString());
+    query.bindValue(":WRITER",   data[1].toString());
     // После чего выполняется запросом методом exec()
     if(!query.exec()){
         qDebug() << "error insert into " << TABLE;
@@ -61,16 +58,18 @@ bool reader_tabl::insertIntoTable(const QVariantList &data)
     }
 
 }
-QVariantList reader_tabl::add_reader(QString fio, QString phone)
+
+QVariantList books_tabl::add_books(QString title, QString writer)
 {
 
     QVariantList data;
-    data.append(fio);
-    data.append(phone);
+    data.append(title);
+    data.append(writer);
     // Вставляем данные в БД
     return  data;
 }
-bool reader_tabl :: deleteFromTable(int a)
+
+bool books_tabl :: deleteFromTable(int a)
 {
      QSqlQuery query;
 

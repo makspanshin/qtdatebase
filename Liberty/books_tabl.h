@@ -1,5 +1,6 @@
-#ifndef reader_tabl_H
-#define reader_tabl_H
+#ifndef BOOKS_TABL_H
+#define BOOKS_TABL_H
+
 
 #include <QObject>
 #include <QSql>
@@ -13,38 +14,37 @@
 #define DATABASE_HOSTNAME   "Liberty"
 #define DATABASE_NAME       "Liberty.db"
 
-#define TABLE                   "Reader"
-#define TABLE_FIO               "FIO"
-#define TABLE_PHONE             "PHONE"
+#define TABLE                   "Books"
+#define TABLE_TITLE             "title"
+#define TABLE_WRITER            "writer"
 
-class Reader
+class Book
 {
-public:
-    QString fio;
-    QString phone;
+  public:
+    QString title_book;
+    QString writer;
 };
 
-class reader_tabl : public QObject
+class books_tabl : public QObject
 {
     Q_OBJECT
 public:
-    explicit reader_tabl(QObject *parent = 0);
+    explicit books_tabl(QObject *parent = 0);
 
-    ~reader_tabl();
+    ~books_tabl();
     /* Методы для непосредственной работы с классом
      * Подключение к базе данных и вставка записей в таблицу
      * */
-    //void connectToDataBase();
+
     bool insertIntoTable(const QVariantList &data);
     bool deleteFromTable(int a);
-    QVariantList add_reader(QString fio,QString phone) ;
+    QVariantList add_books(QString title,QString writer) ;
 
 private:
-    // Сам объект базы данных, с которым будет производиться работа
+    /* Внутренние методы для работы с базой данных
+     * */
 
-
-private:
     bool createTable();
 };
 
-#endif // reader_tabl_H
+#endif // BOOKS_TABL_H

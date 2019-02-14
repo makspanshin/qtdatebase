@@ -1,47 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>reader_window</class>
+ <widget class="QMainWindow" name="reader_window">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>721</width>
-    <height>462</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>reader_window</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
-      <width>691</width>
-      <height>291</height>
+      <y>100</y>
+      <width>721</width>
+      <height>391</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="add_user">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>40</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Добавить</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>40</y>
+      <x>70</x>
+      <y>20</y>
       <width>47</width>
       <height>16</height>
      </rect>
@@ -53,8 +40,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>40</y>
+      <x>220</x>
+      <y>20</y>
       <width>47</width>
       <height>16</height>
      </rect>
@@ -66,7 +53,7 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>310</x>
       <y>0</y>
       <width>121</width>
       <height>21</height>
@@ -76,48 +63,52 @@
      <string>Добавление читателя</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Delete_reader">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>390</y>
-      <width>75</width>
-      <height>23</height>
+      <x>30</x>
+      <y>50</y>
+      <width>355</width>
+      <height>25</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Удалить</string>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="line_fio"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_phone"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="add_user">
+       <property name="text">
+        <string>Добавить</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QLineEdit" name="edit_delete_id">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>390</y>
-      <width>113</width>
-      <height>20</height>
+      <x>20</x>
+      <y>510</y>
+      <width>216</width>
+      <height>25</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLineEdit" name="line_fio">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>40</y>
-      <width>133</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_phone">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>40</y>
-      <width>133</width>
-      <height>20</height>
-     </rect>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLineEdit" name="edit_delete_id"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Delete_reader">
+       <property name="text">
+        <string>Удалить</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -125,7 +116,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>721</width>
+     <width>800</width>
      <height>21</height>
     </rect>
    </property>

@@ -28,15 +28,25 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    reader_tabl.cpp
+    reader_tabl.cpp \
+    reader_window.cpp \
+    books_tabl.cpp \
+    mainwin.cpp \
+    connect_db.cpp \
+    books_window.cpp
 
 HEADERS += \
-        mainwindow.h \
-    reader_tabl.h
+    reader_tabl.h \
+    reader_window.h \
+    books_tabl.h \
+    mainwin.h \
+    connect_db.h \
+    books_window.h
 
 FORMS += \
-        mainwindow.ui
+    reader_window.ui \
+    mainwin.ui \
+    books_window.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

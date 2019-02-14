@@ -1,22 +1,21 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
+#ifndef reader_window_H
+#define reader_window_H
 #include <QMainWindow>
 #include <QSqlTableModel>
 /* Подключаем заголовочный файл для работы с информацией, которая помещена в базу данных */
 #include "reader_tabl.h"
 
 namespace Ui {
-class MainWindow;
+class reader_window;
 }
 
-class MainWindow : public QMainWindow
+class reader_window : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit reader_window(QWidget *parent = nullptr);
+    ~reader_window();
 
 private slots:
     void on_add_user_clicked();
@@ -24,7 +23,7 @@ private slots:
     void on_Delete_reader_clicked();
 
 protected:
-    Ui::MainWindow *ui;
+    Ui::reader_window *ui;
     /* В проекте используются объекты для взаимодействия с информацией в базе данных
      * и моделью представления таблицы базы данных
      * */
@@ -36,6 +35,9 @@ private:
      * */
     void setupModel(const QString &tableName, const QStringList &headers);
     void createUI();
+
+signals:
+    void main_window();  // Сигнал для первого окна на открытие
 };
 
-#endif // MAINWINDOW_H
+#endif // reader_window_H

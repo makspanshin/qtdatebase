@@ -1,23 +1,21 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+﻿#include "reader_window.h"
+#include "ui_reader_window.h"
 #include "reader_tabl.h"
 #include <QMessageBox>
+#include "connect_db.h"
 
 
 
-MainWindow::MainWindow(QWidget *parent) :
+reader_window::reader_window(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::reader_window)
 
 {
     ui->setupUi(this);
-
     /* Первым делом необходимо создать объект, который будет использоваться для работы с данными нашей БД
          * и инициализировать подключение к базе данных
          * */
-    db = new reader_tabl();
-    db->connectToDataBase();
-
+   auto& db = connect_db::getInstance();
 
     /* Инициализируем модель для представления данных
     * с заданием названий колонок
@@ -32,13 +30,13 @@ MainWindow::MainWindow(QWidget *parent) :
              * */
     this->createUI();
 }
-MainWindow::~MainWindow()
+reader_window::~reader_window()
 {
     delete ui;
 }
 /* Метод для инициализации модеи представления данных
  * */
-void MainWindow::setupModel(const QString &tableName, const QStringList &headers)
+void reader_window::setupModel(const QString &tableName, const QStringList &headers)
 {
     /* Производим инициализацию модели представления данных
      * с установкой имени таблицы в базе данных, по которому
@@ -56,7 +54,7 @@ void MainWindow::setupModel(const QString &tableName, const QStringList &headers
     model->setSort(0,Qt::AscendingOrder);
 }
 
-void MainWindow::createUI()
+void reader_window::createUI()
 {
     ui->tableView->setModel(model);     // Устанавливаем модель на TableView
     ui->tableView->setColumnHidden(0, false);    // Скрываем колонку с id записей
@@ -72,7 +70,7 @@ void MainWindow::createUI()
     model->select(); // Делаем выборку данных из таблицы
 }
 
-void MainWindow::on_add_user_clicked()
+void reader_window::on_add_user_clicked()
 {
     if(ui->line_fio->text() == "" || ui->lineEdit_phone->text() == "")
     {
@@ -89,7 +87,7 @@ void MainWindow::on_add_user_clicked()
     }
 }
 
-void MainWindow::on_Delete_reader_clicked()
+void reader_window::on_Delete_reader_clicked()
 {
     int a = ui->edit_delete_id->text().toInt();
     db->deleteFromTable(a);
